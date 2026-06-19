@@ -1,24 +1,33 @@
 [project]
-name = "new_er_diagnosis"
-version = "0.1.0"
-description = "new_er_diagnosis using crewAI"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+name = "heart_diagnosis"
+version = "0.2.0"
+description = "Multi-agent heart disease diagnosis system evaluated on the UCI Heart Disease dataset"
+authors = [{ name = "MASIMD UTCN" }]
 requires-python = ">=3.10,<3.14"
 dependencies = [
-    "crewai[google-genai,tools]==1.8.1",
+    "openai>=1.40.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "scikit-learn>=1.3.0",
+    "pydantic>=2.5.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0",
+    "requests>=2.31.0",
 ]
 
 [project.scripts]
-new_er_diagnosis = "new_er_diagnosis.main:run"
-run_crew = "new_er_diagnosis.main:run"
-train = "new_er_diagnosis.main:train"
-replay = "new_er_diagnosis.main:replay"
-test = "new_er_diagnosis.main:test"
-run_with_trigger = "new_er_diagnosis.main:run_with_trigger"
+heart-diagnosis = "heart_diagnosis.main:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.crewai]
-type = "crew"
+[tool.hatch.build.targets.wheel]
+packages = ["src/heart_diagnosis"]
+
+[dependency-groups]
+dev = ["pytest>=7.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

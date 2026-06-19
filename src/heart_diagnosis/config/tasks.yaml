@@ -1,0 +1,38 @@
+# Task descriptions for each agent. The runtime injects the patient's feature
+# subset and the required JSON schema, so descriptions stay focused on the
+# clinical instruction.
+
+cardio_task:
+  agent: cardiology_agent
+  description: >
+    Analyze the patient strictly from an ischemia/angina standpoint using only
+    the chest-pain and exercise-stress features provided. Judge whether the
+    pattern suggests obstructive coronary artery disease. If a feature is
+    unknown, reason conservatively and lower your confidence.
+
+imaging_task:
+  agent: imaging_agent
+  description: >
+    Analyze the patient from a perfusion-imaging standpoint using only the
+    imaging and resting-ECG features provided. A reversible defect or several
+    vessels involved is strong evidence for disease.
+
+metabolic_task:
+  agent: metabolic_agent
+  description: >
+    Analyze the patient from a metabolic / risk-factor standpoint using only
+    the lipid, glycemic and blood-pressure features provided. These raise risk
+    but are rarely diagnostic on their own, so keep confidence moderate.
+
+demographics_task:
+  agent: demographics_agent
+  description: >
+    Estimate the patient's pre-test probability of coronary disease using only
+    age and sex. This sets a baseline; keep confidence modest.
+
+coordinator_task:
+  agent: coordinator_agent
+  description: >
+    You are given the structured JSON opinions of every specialist. Produce the
+    final diagnosis. Weight each specialist by its reliability and stated
+    confidence, resolve disagreements, and report how strongly the panel agreed.

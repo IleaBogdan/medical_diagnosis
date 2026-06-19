@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+evaluation_report.json
+diagnosis_output.json
+heart_disease_report.json
+heart_disease_report.md
+diagnosis_history.jsonl
+diagnosis_history.md
+.pytest_cache/
